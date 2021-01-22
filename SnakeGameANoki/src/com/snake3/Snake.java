@@ -114,7 +114,7 @@ public class Snake {
 			else if (this.y[i] >= board.BOARDHEIGHT) {
 				this.y[i] = 0;
 			}
-			if ((proximity(x[0], food.getFoodX(), 20)) && (proximity(y[0], food.getFoodY(), 20))) foodCollision(food);
+			if ((x[0] == food.getFoodX() && y[0] == food.getFoodY())) foodCollision(food);
 		}
 		
 		return false;
@@ -122,7 +122,7 @@ public class Snake {
 	}
 	
 	public boolean foodCollision(Food food) {
-		if ((proximity(x[0], food.getFoodX(), 20)) && (proximity(y[0], food.getFoodY(), 20))) {
+		if ((x[0] == food.getFoodX() && y[0] == food.getFoodY())) {
 			setJoints(getJoints() + 1);
 			food.createFood();
 			return true;
@@ -130,9 +130,6 @@ public class Snake {
 		return false;
 	}
 	
-	private boolean proximity(int a, int b, int closeness) {
-		return Math.abs((long) a - b) <= closeness;
-	}
 
 	public void move() {
 	    for (int i = joints; i > 0; i--) {
